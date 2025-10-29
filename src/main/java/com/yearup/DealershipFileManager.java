@@ -1,0 +1,53 @@
+package com.yearup;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class DealershipFileManager {
+
+    static String file = "src/main/resources/inventory.csv";
+    ArrayList<DealerShip> dealerShips = new ArrayList<>();
+
+    //responsible for reading the dealership file,
+    //parsing the data, and creating a Dealership object full of vehicles from the
+    //file
+
+    static public DealerShip getDealership() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        String input;
+        int titleCount = 0;
+        DealerShip dealerShip = new DealerShip();
+        while((input = reader.readLine()) != null) {
+            String[] sections = input.split("\\|");
+            if(titleCount == 0){
+                String title = sections[0];
+                String address = sections[1];
+                String phone = sections[2];
+                dealerShip.setName(title);
+                dealerShip.setAddress(address);
+                dealerShip.setPhone(phone);
+                ++titleCount;
+            } else {
+                int vin = Integer.parseInt(sections[0]);
+                int year = Integer.parseInt(sections[1]);
+                String make = sections[2];
+                String model = sections[3];
+                String vehicleType = sections[4];
+                String color = sections[5];
+                int odometer = Integer.parseInt(sections[6]);
+                double price = Double.parseDouble(sections[7]);
+                dealerShip.addVehicle(new Vehicle(vin, year, make, model, vehicleType, color, odometer, price));
+            }
+        }
+        return dealerShip;
+    }
+
+    public void saveDealership(DealerShip dealerShip) {
+        String name = dealerShip.getName();
+        String address = dealerShip.getAddress();
+        String phone = dealerShip.getPhone();
+    }
+
+}
