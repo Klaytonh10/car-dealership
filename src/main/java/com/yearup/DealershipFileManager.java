@@ -41,13 +41,13 @@ public class DealershipFileManager {
                 dealerShip.addVehicle(new Vehicle(vin, year, make, model, vehicleType, color, odometer, price));
             }
         }
+        System.out.println("\n" + dealerShip.getName() + " created! \nWould you like to save this dealership?\n");
         return dealerShip;
     }
 
     public void saveDealership(DealerShip dealerShip) {
-        String name = dealerShip.getName();
-        String address = dealerShip.getAddress();
-        String phone = dealerShip.getPhone();
+        dealerShips.add(dealerShip);
+        System.out.println(dealerShip.getName() + " saved!\n");
     }
 
 }

@@ -1,5 +1,6 @@
 package com.yearup;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,9 +117,10 @@ public class DealerShip {
     }
 
     public void getAllVehicles() {
+        DecimalFormat formater = new DecimalFormat(".00");
         String output;
         for (Vehicle vehicle : inventory) {
-            output = "Price: "+ vehicle.getPrice() + ", Year: " + vehicle.getYear() + ", Make: " + vehicle.getMake() + ", Model: " + vehicle.getModel() + ", Color: " + vehicle.getColor() + ", Miles: " + vehicle.getOdometer();
+            output = "Price: $"+ formater.format(vehicle.getPrice()) + ", Year: " + vehicle.getYear() + ", Make: " + vehicle.getMake() + ", Model: " + vehicle.getModel() + ", Color: " + vehicle.getColor() + ", Miles: " + vehicle.getOdometer();
             System.out.println(output);
         }
     }
