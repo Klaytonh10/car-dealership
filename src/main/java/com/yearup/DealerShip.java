@@ -10,14 +10,17 @@ public class DealerShip {
     private String address;
     private String phone;
 
-    private ArrayList<Vehicle> inventory = new ArrayList<>();
+    private ArrayList<Vehicle> inventory;
 
-    public DealerShip() {}
+    public DealerShip() {
+        this.inventory = new ArrayList<>();
+    }
 
     public DealerShip(String name, String address, String phone) {
         this.name = name;
         this.address = address;
         this.phone = phone;
+        this.inventory = new ArrayList<>();
     }
 
     public void setName(String name) {
@@ -53,7 +56,7 @@ public class DealerShip {
             }
         }
 
-        return carsInRange;
+        return null;
     }
 
     public List<Vehicle> getVehicleByYear(int min, int max) {
@@ -65,7 +68,7 @@ public class DealerShip {
             }
         }
 
-        return carsInRange;
+        return null;
     }
 
     public List<Vehicle> getVehicleByMileage(int min, int max) {
@@ -77,7 +80,7 @@ public class DealerShip {
             }
         }
 
-        return carsInRange;
+        return null;
     }
 
     public List<Vehicle> getVehicleByMakeModel(String make, String model) {
@@ -89,7 +92,7 @@ public class DealerShip {
             }
         }
 
-        return carsInRange;
+        return null;
     }
 
     public List<Vehicle> getVehicleByColor(String color) {
@@ -101,7 +104,7 @@ public class DealerShip {
             }
         }
 
-        return carsInRange;
+        return null;
     }
 
     public List<Vehicle> getVehicleByType(String type) {
@@ -113,7 +116,7 @@ public class DealerShip {
             }
         }
 
-        return carsInRange;
+        return null;
     }
 
     public void getAllVehicles() {
@@ -130,7 +133,7 @@ public class DealerShip {
     }
 
     public void removeVehicle(Vehicle vehicle) {
-        inventory.remove(vehicle);
+        //inventory.remove(vehicle);
     }
 
 }
