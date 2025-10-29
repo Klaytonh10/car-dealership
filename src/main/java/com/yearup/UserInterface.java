@@ -1,11 +1,19 @@
 package com.yearup;
 
+import java.io.IOException;
+
 public class UserInterface {
 
     DealerShip dealerShip;
 
     public UserInterface() {
 
+    }
+
+    private DealerShip init() throws IOException {
+        DealershipFileManager dealershipFileManager = new DealershipFileManager();
+        DealerShip dealerShip = dealershipFileManager.getDealership();
+        return dealerShip;
     }
 
     public void display() {

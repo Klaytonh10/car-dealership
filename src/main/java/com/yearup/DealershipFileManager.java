@@ -7,14 +7,14 @@ import java.util.ArrayList;
 
 public class DealershipFileManager {
 
-    static String file = "src/main/resources/inventory.csv";
+    static String file = "src/main/resources/inventory2.csv";
     ArrayList<DealerShip> dealerShips = new ArrayList<>();
 
     //responsible for reading the dealership file,
     //parsing the data, and creating a Dealership object full of vehicles from the
     //file
 
-    static public DealerShip getDealership() throws IOException {
+    public DealerShip getDealership() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String input;
         int titleCount = 0;
