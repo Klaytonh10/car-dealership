@@ -7,7 +7,7 @@ import java.util.List;
 public class DealershipFileManager {
 
     static String file = "src/main/resources/inventory2.csv";
-    ArrayList<DealerShip> dealerShips = new ArrayList<>();
+    private ArrayList<DealerShip> dealerShips = new ArrayList<>();
 
     //responsible for reading the dealership file,
     //parsing the data, and creating a Dealership object full of vehicles from the
@@ -53,7 +53,7 @@ public class DealershipFileManager {
         FileWriter writer = new FileWriter(file);
         BufferedWriter bufferedWriter = new BufferedWriter(writer);
         for(DealerShip thisDealership : dealerShips){
-            String titleString = dealerShip.getName() + "|" + dealerShip.getAddress() + "|" + dealerShip.getPhone();
+            String titleString = thisDealership.getName() + "|" + thisDealership.getAddress() + "|" + thisDealership.getPhone();
             bufferedWriter.write(titleString);
             bufferedWriter.newLine();
             for (Vehicle vehicle : vehicles) {
