@@ -41,7 +41,7 @@ public class DealershipFileManager {
                 dealerShip.addVehicle(new Vehicle(vin, year, make, model, vehicleType, color, odometer, price));
             }
         }
-        System.out.println("\n" + dealerShip.getName() + " created! \nWould you like to save this dealership?\n");
+        //System.out.println("\n" + dealerShip.getName() + " created! \nWould you like to save this dealership?\n");
         return dealerShip;
     }
 

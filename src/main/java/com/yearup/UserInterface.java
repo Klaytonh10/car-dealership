@@ -3,11 +3,14 @@ package com.yearup;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Scanner;
 
 public class UserInterface {
 
     private DealerShip dealerShip;
     private boolean isRunning = false;
+
+    private Scanner scanner = new Scanner(System.in);
 
     public UserInterface() {
 
@@ -25,17 +28,16 @@ public class UserInterface {
             throw new RuntimeException(e);
         }
         isRunning = true;
-        //while(isRunning) {
-        //    System.out.println("""
-        //            Fairly Reliable Car Dealership
-        //
-        //
-        //            """);
-        //}
-        processGetAllVehiclesRequest();
-
+        while(isRunning) {
+            System.out.println("""
+                    
+                    
+                    
+                    """);
+            String wait = scanner.nextLine();
+        }
     }
-//
+
     private void displayVehicles(List<Vehicle> inventory) {
         DecimalFormat formater = new DecimalFormat(".00");
         String output;
