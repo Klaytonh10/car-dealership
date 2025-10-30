@@ -1,23 +1,48 @@
 package com.yearup;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.List;
 
 public class UserInterface {
 
-    DealerShip dealerShip;
+    private DealerShip dealerShip;
+    private boolean isRunning = false;
 
     public UserInterface() {
 
     }
 
-    private DealerShip init() throws IOException {
+    private void init() throws IOException {
         DealershipFileManager dfm = new DealershipFileManager();
-        DealerShip dealerShip = new DealerShip();
-        return dealerShip;
+        this.dealerShip = dfm.getDealership();
     }
 
     public void display() {
+        try {
+            init();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        isRunning = true;
+        //while(isRunning) {
+        //    System.out.println("""
+        //            Fairly Reliable Car Dealership
+        //
+        //
+        //            """);
+        //}
+        processGetAllVehiclesRequest();
 
+    }
+
+    private void displayVehicles(List<Vehicle> inventory) {
+        DecimalFormat formater = new DecimalFormat(".00");
+        String output;
+        for (Vehicle vehicle : inventory) {
+            output = "Price: $"+ formater.format(vehicle.getPrice()) + ", Year: " + vehicle.getYear() + ", Make: " + vehicle.getMake() + ", Model: " + vehicle.getModel() + ", Color: " + vehicle.getColor() + ", Miles: " + vehicle.getOdometer();
+            System.out.println(output);
+        }
     }
 
     public void processGetByPriceRequest() {
@@ -41,7 +66,8 @@ public class UserInterface {
     }
 
     public void processGetAllVehiclesRequest() {
-
+        List<Vehicle> inventory = this.dealerShip.getAllVehicles();
+        displayVehicles(inventory);
     }
 
     public void processAddVehicleRequest() {

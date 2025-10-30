@@ -119,13 +119,8 @@ public class DealerShip {
         return null;
     }
 
-    public void getAllVehicles() {
-        DecimalFormat formater = new DecimalFormat(".00");
-        String output;
-        for (Vehicle vehicle : inventory) {
-            output = "Price: $"+ formater.format(vehicle.getPrice()) + ", Year: " + vehicle.getYear() + ", Make: " + vehicle.getMake() + ", Model: " + vehicle.getModel() + ", Color: " + vehicle.getColor() + ", Miles: " + vehicle.getOdometer();
-            System.out.println(output);
-        }
+    public List<Vehicle> getAllVehicles() {
+        return this.inventory;
     }
 
     public void addVehicle(Vehicle vehicle) {
