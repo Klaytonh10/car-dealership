@@ -43,6 +43,7 @@ public class UserInterface {
                 7 - List ALL vehicles
                 8 - Add a vehicle
                 9 - Remove a vehicle
+                0 - Sell/Lease vehicle
                 99 - Quit
                 
                 Choose an option: """);
@@ -75,6 +76,8 @@ public class UserInterface {
                 case "9":
                     processRemoveVehicleRequest();
                     break;
+                case "0":
+                    processSellLeaseRequest();
                 case "99":
                     isRunning = !isRunning;
                     break;
@@ -83,6 +86,14 @@ public class UserInterface {
                     break;
             }
         }
+    }
+
+    // collect user information
+    // add vehicle information to contract
+    // ask if sale or lease (Cannot lease a vehicle over 3 years old)
+    // calculate pricing
+    private void processSellLeaseRequest() {
+
     }
 
     private void displayVehicles(List<Vehicle> inventory) {
