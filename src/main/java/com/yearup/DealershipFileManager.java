@@ -2,6 +2,7 @@ package com.yearup;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DealershipFileManager {
 
@@ -17,9 +18,9 @@ public class DealershipFileManager {
         String input;
         int titleCount = 0;
         DealerShip dealerShip = new DealerShip();
-        while((input = reader.readLine()) != null) {
+        while ((input = reader.readLine()) != null) {
             String[] sections = input.split("\\|");
-            if(titleCount == 0){
+            if (titleCount == 0) {
                 String title = sections[0];
                 String address = sections[1];
                 String phone = sections[2];
@@ -43,20 +44,28 @@ public class DealershipFileManager {
         return dealerShip;
     }
 
-    public void saveDealership(DealerShip dealerShip) {
+
+    // this could be completely wrong so let's not touch that right now
+    public void saveDealership(DealerShip dealerShip) throws IOException {
         dealerShips.add(dealerShip);
-        System.out.println(dealerShip.getName() + " saved!\n");
+        List<Vehicle> vehicles = dealerShip.getAllVehicles();
 
-        //try (FileWriter writer = new FileWriter(file)){
-        //    BufferedWriter bufferedWriter = new BufferedWriter(writer);
-        //    String vehicleString =  dealerShip.getV
-        //} catch (IOException e) {
-        //    System.out.println(e);
-        //}
-
-        for (DealerShip thisDealerShip : dealerShips) {
-
+        FileWriter writer = new FileWriter(file);
+        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+        for(DealerShip thisDealership : dealerShips){
+            String titleString = dealerShip.getName() + "|" + dealerShip.getAddress() + "|" + dealerShip.getPhone();
+            bufferedWriter.write(titleString);
+            bufferedWriter.newLine();
+            for (Vehicle vehicle : vehicles) {
+                String dealString = vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" + vehicle.getModel() + "|" + vehicle.getVehicleType() + "|" + vehicle.getColor() + "|" + vehicle.getOdometer() + "|" + vehicle.getPrice();
+                bufferedWriter.write(dealString);
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.newLine();
         }
+        bufferedWriter.close();
+        System.out.println(dealerShip.getName() + " saved!\n");
     }
-
 }
+
+

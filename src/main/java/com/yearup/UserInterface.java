@@ -1,5 +1,6 @@
 package com.yearup;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.List;
@@ -76,6 +77,10 @@ public class UserInterface {
                     break;
                 case "99":
                     isRunning = !isRunning;
+                    break;
+                default:
+                    System.out.println("Please select an option\n");
+                    break;
             }
         }
     }
@@ -174,7 +179,11 @@ public class UserInterface {
         dealerShip.addVehicle(v);
 
         DealershipFileManager dfm = new DealershipFileManager();
-        dfm.saveDealership(dealerShip);
+        try {
+            dfm.saveDealership(dealerShip);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void processRemoveVehicleRequest() {
