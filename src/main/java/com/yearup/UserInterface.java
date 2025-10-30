@@ -35,7 +35,7 @@ public class UserInterface {
         processGetAllVehiclesRequest();
 
     }
-
+//
     private void displayVehicles(List<Vehicle> inventory) {
         DecimalFormat formater = new DecimalFormat(".00");
         String output;
