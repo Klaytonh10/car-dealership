@@ -8,5 +8,6 @@ public class Main {
         //Load Cars into list
         UserInterface ui = new UserInterface();
         ui.display();
+
     }
 }

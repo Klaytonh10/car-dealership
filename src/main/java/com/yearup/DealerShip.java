@@ -47,7 +47,7 @@ public class DealerShip {
         return phone;
     }
 
-    public List<Vehicle> getVehicleByPrice(int min, int max) {
+    public List<Vehicle> getVehicleByPrice(double min, double max) {
         ArrayList<Vehicle> carsInRange = new ArrayList<>();
 
         for(Vehicle vehicle : inventory) {
@@ -56,7 +56,7 @@ public class DealerShip {
             }
         }
 
-        return null;
+        return carsInRange;
     }
 
     public List<Vehicle> getVehicleByYear(int min, int max) {
@@ -68,7 +68,7 @@ public class DealerShip {
             }
         }
 
-        return null;
+        return carsInRange;
     }
 
     public List<Vehicle> getVehicleByMileage(int min, int max) {
@@ -80,7 +80,7 @@ public class DealerShip {
             }
         }
 
-        return null;
+        return carsInRange;
     }
 
     public List<Vehicle> getVehicleByMakeModel(String make, String model) {
@@ -92,7 +92,7 @@ public class DealerShip {
             }
         }
 
-        return null;
+        return carsInRange;
     }
 
     public List<Vehicle> getVehicleByColor(String color) {
@@ -104,7 +104,7 @@ public class DealerShip {
             }
         }
 
-        return null;
+        return carsInRange;
     }
 
     public List<Vehicle> getVehicleByType(String type) {
@@ -116,7 +116,7 @@ public class DealerShip {
             }
         }
 
-        return null;
+        return carsInRange;
     }
 
     public List<Vehicle> getAllVehicles() {

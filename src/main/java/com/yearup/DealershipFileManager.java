@@ -1,8 +1,6 @@
 package com.yearup;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class DealershipFileManager {
@@ -48,6 +46,17 @@ public class DealershipFileManager {
     public void saveDealership(DealerShip dealerShip) {
         dealerShips.add(dealerShip);
         System.out.println(dealerShip.getName() + " saved!\n");
+
+        //try (FileWriter writer = new FileWriter(file)){
+        //    BufferedWriter bufferedWriter = new BufferedWriter(writer);
+        //    String vehicleString =  dealerShip.getV
+        //} catch (IOException e) {
+        //    System.out.println(e);
+        //}
+
+        for (DealerShip thisDealerShip : dealerShips) {
+
+        }
     }
 
 }
