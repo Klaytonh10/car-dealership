@@ -11,8 +11,8 @@ public class UserInterface {
     }
 
     private DealerShip init() throws IOException {
-        DealershipFileManager dealershipFileManager = new DealershipFileManager();
-        DealerShip dealerShip = dealershipFileManager.getDealership();
+        DealershipFileManager dfm = new DealershipFileManager();
+        DealerShip dealerShip = new DealerShip();
         return dealerShip;
     }
 
