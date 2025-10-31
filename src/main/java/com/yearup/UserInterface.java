@@ -1,11 +1,10 @@
 package com.yearup;
 
-import javax.swing.text.DateFormatter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -109,9 +108,10 @@ public class UserInterface {
         DecimalFormat formater = new DecimalFormat(".00");
         String output;
         for (Vehicle vehicle : inventory) {
-            output = "Price: $"+ formater.format(vehicle.getPrice()) + ", Year: " + vehicle.getYear() + ", Make: " + vehicle.getMake() + ", Model: " + vehicle.getModel() + ", Color: " + vehicle.getColor() + ", Miles: " + vehicle.getOdometer();
-            System.out.println(output + "\n");
+            output = "Price: $"+ formater.format(vehicle.getPrice()) + ", Year: " + vehicle.getYear() + ", Make: " + vehicle.getMake() + ", Model: " + vehicle.getModel() + ", Color: " + vehicle.getColor() + ", Miles: " + vehicle.getOdometer() + ", Vin " + vehicle.getVin();
+            System.out.println(output);
         }
+        System.out.println();
     }
 
     public void processGetByPriceRequest() {
@@ -120,7 +120,7 @@ public class UserInterface {
         System.out.print("Max price: ");
         double max = Double.parseDouble(scanner.nextLine());
         System.out.println();
-        List<Vehicle> vehiclesInRange = dealerShip.getVehicleByPrice(min, max);
+        ArrayList<Vehicle> vehiclesInRange = dealerShip.getVehicleByPrice(min, max);
         displayVehicles(vehiclesInRange);
     }
 
@@ -130,7 +130,7 @@ public class UserInterface {
         System.out.print("Max year: ");
         int max = Integer.parseInt(scanner.nextLine());
         System.out.println();
-        List<Vehicle> vehiclesInRange = dealerShip.getVehicleByYear(min, max);
+        ArrayList<Vehicle> vehiclesInRange = dealerShip.getVehicleByYear(min, max);
         displayVehicles(vehiclesInRange);
     }
 
@@ -138,7 +138,7 @@ public class UserInterface {
         System.out.print("\nRequested color: ");
         String color = scanner.nextLine();
         System.out.println();
-        List<Vehicle> vehiclesInRange = dealerShip.getVehicleByColor(color);
+        ArrayList<Vehicle> vehiclesInRange = dealerShip.getVehicleByColor(color);
         displayVehicles(vehiclesInRange);
     }
 
@@ -148,7 +148,7 @@ public class UserInterface {
         System.out.println("Maximum mileage: ");
         int max = Integer.parseInt(scanner.nextLine());
         System.out.println();
-        List<Vehicle> vehiclesInRange = dealerShip.getVehicleByMileage(min, max);
+        ArrayList<Vehicle> vehiclesInRange = dealerShip.getVehicleByMileage(min, max);
         displayVehicles(vehiclesInRange);
     }
 
@@ -156,7 +156,7 @@ public class UserInterface {
         System.out.print("\nRequested vehicle type: ");
         String type = scanner.nextLine();
         System.out.println();
-        List<Vehicle> vehiclesInRange = dealerShip.getVehicleByType(type);
+        ArrayList<Vehicle> vehiclesInRange = dealerShip.getVehicleByType(type);
         displayVehicles(vehiclesInRange);
     }
 
@@ -166,13 +166,13 @@ public class UserInterface {
         System.out.println("Your car's model: ");
         String model = scanner.nextLine();
         System.out.println();
-        List<Vehicle> returnedVehicles = dealerShip.getVehicleByMakeModel(make, model);
+        ArrayList<Vehicle> returnedVehicles = dealerShip.getVehicleByMakeModel(make, model);
         displayVehicles(returnedVehicles);
     }
 
     public void processGetAllVehiclesRequest() {
         System.out.println();
-        List<Vehicle> inventory = this.dealerShip.getAllVehicles();
+        ArrayList<Vehicle> inventory = this.dealerShip.getAllVehicles();
         displayVehicles(inventory);
     }
 
@@ -207,6 +207,25 @@ public class UserInterface {
     }
 
     public void processRemoveVehicleRequest() {
-
+        ArrayList<Vehicle> vehicles = dealerShip.getAllVehicles();
+        DealershipFileManager dfm = new DealershipFileManager();
+        displayVehicles(vehicles);
+        int vin;
+        do
+        {
+            System.out.println("Select a vehicle by it's vin #: ");
+            try {
+                vin = Integer.parseInt(scanner.nextLine());
+                Vehicle removedVehicle = dealerShip.getVehicleByVin(vin);
+                dealerShip.removeVehicle(removedVehicle);
+                dfm.saveDealership(dealerShip);
+                break;
+            }
+            catch (Exception e)
+            {
+                System.out.println("Couldn't parse input, please try again\n");
+            }
+        }
+        while (true);
     }
 }

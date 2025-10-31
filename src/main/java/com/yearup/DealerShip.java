@@ -1,6 +1,5 @@
 package com.yearup;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +46,7 @@ public class DealerShip {
         return phone;
     }
 
-    public List<Vehicle> getVehicleByPrice(double min, double max) {
+    public ArrayList<Vehicle> getVehicleByPrice(double min, double max) {
         ArrayList<Vehicle> carsInRange = new ArrayList<>();
 
         for(Vehicle vehicle : inventory) {
@@ -59,7 +58,7 @@ public class DealerShip {
         return carsInRange;
     }
 
-    public List<Vehicle> getVehicleByYear(int min, int max) {
+    public ArrayList<Vehicle> getVehicleByYear(int min, int max) {
         ArrayList<Vehicle> carsInRange = new ArrayList<>();
 
         for(Vehicle vehicle : inventory) {
@@ -71,7 +70,7 @@ public class DealerShip {
         return carsInRange;
     }
 
-    public List<Vehicle> getVehicleByMileage(int min, int max) {
+    public ArrayList<Vehicle> getVehicleByMileage(int min, int max) {
         ArrayList<Vehicle> carsInRange = new ArrayList<>();
 
         for(Vehicle vehicle : inventory) {
@@ -83,7 +82,7 @@ public class DealerShip {
         return carsInRange;
     }
 
-    public List<Vehicle> getVehicleByMakeModel(String make, String model) {
+    public ArrayList<Vehicle> getVehicleByMakeModel(String make, String model) {
         ArrayList<Vehicle> carsInRange = new ArrayList<>();
 
         for(Vehicle vehicle : inventory) {
@@ -95,7 +94,22 @@ public class DealerShip {
         return carsInRange;
     }
 
-    public List<Vehicle> getVehicleByColor(String color) {
+    public Vehicle getVehicleByVin(int vin) {
+        Vehicle thisVehicle = null;
+
+        for(Vehicle vehicle : inventory) {
+            if (vehicle.getVin() == vin) {
+                thisVehicle = vehicle;
+                break;
+            } else {
+                continue;
+            }
+        }
+
+        return thisVehicle;
+    }
+
+    public ArrayList<Vehicle> getVehicleByColor(String color) {
         ArrayList<Vehicle> carsInRange = new ArrayList<>();
 
         for(Vehicle vehicle : inventory) {
@@ -107,7 +121,7 @@ public class DealerShip {
         return carsInRange;
     }
 
-    public List<Vehicle> getVehicleByType(String type) {
+    public ArrayList<Vehicle> getVehicleByType(String type) {
         ArrayList<Vehicle> carsInRange = new ArrayList<>();
 
         for(Vehicle vehicle : inventory) {
@@ -119,7 +133,7 @@ public class DealerShip {
         return carsInRange;
     }
 
-    public List<Vehicle> getAllVehicles() {
+    public ArrayList<Vehicle> getAllVehicles() {
         return this.inventory;
     }
 
@@ -128,7 +142,7 @@ public class DealerShip {
     }
 
     public void removeVehicle(Vehicle vehicle) {
-        //inventory.remove(vehicle);
+        inventory.remove(vehicle);
     }
 
 }
