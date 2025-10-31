@@ -1,8 +1,11 @@
 package com.yearup;
 
+import javax.swing.text.DateFormatter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -93,7 +96,13 @@ public class UserInterface {
     // ask if sale or lease (Cannot lease a vehicle over 3 years old)
     // calculate pricing
     private void processSellLeaseRequest() {
-
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        today.format(formatter);
+        System.out.print("Enter your name: ");
+        String userName = scanner.nextLine();
+        System.out.print("Enter your email: ");
+        String email = scanner.nextLine();
     }
 
     private void displayVehicles(List<Vehicle> inventory) {
