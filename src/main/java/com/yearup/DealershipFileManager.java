@@ -23,7 +23,7 @@ public class DealershipFileManager {
         String address = dealershipArray[1];
         String phone = dealershipArray[2];
         dealerShip = new DealerShip(title, address, phone);
-        reader.readLine();
+        //reader.readLine();
         while ((input = reader.readLine()) != null) {
             String[] sections = input.split("\\|");
 
