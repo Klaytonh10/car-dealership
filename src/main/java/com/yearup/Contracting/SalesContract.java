@@ -16,6 +16,15 @@ public class SalesContract extends Contract {
         this.isFinancing = isFinancing;
     }
 
+    public double getProcessingFee() {
+
+        if(this.getVehicleSold().getPrice() < 10000) {
+            this.processingFee = 295;
+        } else this.processingFee = 495;
+
+        return processingFee;
+    }
+
     public static double getSalesTaxAmount() {
         return salesTaxAmount;
     }

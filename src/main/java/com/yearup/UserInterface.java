@@ -95,13 +95,39 @@ public class UserInterface {
     // ask if sale or lease (Cannot lease a vehicle over 3 years old)
     // calculate pricing
     private void processSellLeaseRequest() {
-        LocalDate today = LocalDate.now();
+        LocalDate todayNow = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        today.format(formatter);
+        String today = todayNow.format(formatter);
         System.out.print("Enter your name: ");
         String userName = scanner.nextLine();
         System.out.print("Enter your email: ");
         String email = scanner.nextLine();
+
+        ArrayList<Vehicle> vehicles = dealerShip.getAllVehicles();
+        displayVehicles(vehicles);
+        System.out.println("Select a vehicle by entering a matching vin #: ");
+        int chosenVin = Integer.parseInt(scanner.nextLine());
+        Vehicle requestedVehicle = dealerShip.getVehicleByVin(chosenVin);
+
+        int dateDifference = Integer.parseInt(today) - requestedVehicle.getYear();
+
+        // check if valid for lease
+        if(dateDifference <= 3) {
+            System.out.println("Is this a lease?(Y/N): ");
+            String leaseResponse = scanner.nextLine();
+            if(leaseResponse.trim().equalsIgnoreCase("Y")){
+                leaseRequest();
+            } else{
+                return;
+            }
+        } else{
+            return;
+        }
+
+
+    }
+
+    private void leaseRequest() {
     }
 
     private void displayVehicles(List<Vehicle> inventory) {

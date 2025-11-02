@@ -13,6 +13,8 @@ public class LeaseContract extends Contract {
     }
 
     public double getExpectedEndingValue() {
+        expectedEndingValue = getTotalPrice()/2;
+
         return expectedEndingValue;
     }
 
