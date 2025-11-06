@@ -99,8 +99,7 @@ public class UserInterface {
     // ask if sale or lease (Cannot lease a vehicle over 3 years old)
     // calculate pricing
     private void processSellLeaseRequest() {
-        LocalDate todayNow = LocalDate.now();
-        String today = todayNow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         System.out.print("Enter your name: ");
         String userName = scanner.nextLine();
         System.out.print("Enter your email: ");
@@ -132,12 +131,10 @@ public class UserInterface {
         DealershipFileManager dfm = new DealershipFileManager();
         ContractFileManager cfm = new ContractFileManager();
 
-        cfm.addContract(v);
-
         try {
             dealerShip.removeVehicle(v);
             dfm.saveDealership(dealerShip);
-            cfm.addContract(new LeaseContract(expectedEndingValue, leaseFee, ));
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
