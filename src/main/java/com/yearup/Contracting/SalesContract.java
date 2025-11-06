@@ -1,28 +1,20 @@
 package com.yearup.Contracting;
 
+import com.yearup.Vehicle;
+
 public class SalesContract extends Contract {
 
     private final static double salesTaxAmount = 0.05;
     private final static double recordingFee = 100;
-    private double processingFee;
-    private boolean isFinancing = false;
-    private double monthlyPaymentIfFinanced;
+    private final double processingFeeUnder = 295;
+    private final double processingFeeOver = 495;
 
-    public SalesContract() {
-
-    }
-
-    public SalesContract(boolean isFinancing) {
-        this.isFinancing = isFinancing;
+    public SalesContract(String dateOfContract, String customerName, String customerEmail, Vehicle vehicleSold) {
+        super(dateOfContract, customerName, customerEmail, vehicleSold);
     }
 
     public double getProcessingFee() {
-
-        if(this.getVehicleSold().getPrice() < 10000) {
-            this.processingFee = 295;
-        } else this.processingFee = 495;
-
-        return processingFee;
+        return 0;
     }
 
     public static double getSalesTaxAmount() {

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class DealershipFileManager {
 
-    static String file = "src/main/resources/inventory2.csv";
+    private String file = "src/main/resources/inventory2.csv";
     private DealerShip dealerShip;
 
     //responsible for reading the dealership file,

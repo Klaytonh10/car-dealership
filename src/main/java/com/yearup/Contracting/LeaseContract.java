@@ -1,12 +1,17 @@
 package com.yearup.Contracting;
 
+import com.yearup.Vehicle;
+
 public class LeaseContract extends Contract {
+
+    private Vehicle leasedVehicle;
 
     private double expectedEndingValue; // 50% of the original price
     private double leaseFee;
     private double monthlyPaymentFinancing; // All leases 4.0% for 36/months
 
-    public LeaseContract(double expectedEndingValue, double leaseFee, double monthlyPaymentFinancing) {
+    public LeaseContract(String dateOfContract, String customerName, String customerEmail, Vehicle vehicleSold, double expectedEndingValue, double leaseFee, double monthlyPaymentFinancing) {
+        super(dateOfContract, customerName, customerEmail, vehicleSold);
         this.expectedEndingValue = expectedEndingValue;
         this.leaseFee = leaseFee;
         this.monthlyPaymentFinancing = monthlyPaymentFinancing;
@@ -14,7 +19,6 @@ public class LeaseContract extends Contract {
 
     public double getExpectedEndingValue() {
         expectedEndingValue = getTotalPrice()/2;
-
         return expectedEndingValue;
     }
 
@@ -40,11 +44,13 @@ public class LeaseContract extends Contract {
 
     @Override
     public double getTotalPrice() {
+
         return 0;
     }
 
     @Override
     public double getMonthlyPayment() {
+
         return 0;
     }
 }

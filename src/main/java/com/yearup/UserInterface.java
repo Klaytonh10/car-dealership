@@ -1,5 +1,9 @@
 package com.yearup;
 
+import com.yearup.Contracting.Contract;
+import com.yearup.Contracting.ContractFileManager;
+import com.yearup.Contracting.LeaseContract;
+
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -96,8 +100,7 @@ public class UserInterface {
     // calculate pricing
     private void processSellLeaseRequest() {
         LocalDate todayNow = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String today = todayNow.format(formatter);
+        String today = todayNow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         System.out.print("Enter your name: ");
         String userName = scanner.nextLine();
         System.out.print("Enter your email: ");
@@ -116,18 +119,33 @@ public class UserInterface {
             System.out.println("Is this a lease?(Y/N): ");
             String leaseResponse = scanner.nextLine();
             if(leaseResponse.trim().equalsIgnoreCase("Y")){
-                leaseRequest();
-            } else{
-                return;
+                leaseRequest(requestedVehicle);
+            }else {
+                sellRequest(requestedVehicle);
             }
-        } else{
-            return;
+        } else {
+            sellRequest(requestedVehicle);
         }
+    }
 
+    private void leaseRequest(Vehicle v) {
+        DealershipFileManager dfm = new DealershipFileManager();
+        ContractFileManager cfm = new ContractFileManager();
+
+        cfm.addContract(v);
+
+        try {
+            dealerShip.removeVehicle(v);
+            dfm.saveDealership(dealerShip);
+            cfm.addContract(new LeaseContract(expectedEndingValue, leaseFee, ));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
-    private void leaseRequest() {
+    private void sellRequest(Vehicle v) {
+
     }
 
     private void displayVehicles(List<Vehicle> inventory) {
